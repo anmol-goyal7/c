@@ -1,36 +1,44 @@
-/* I've created this program so that I can calculate the number of classes that I can skip while maintaining my attendance.*/
+/* I've created this program so that I can calculate the number of classes that I can bunk while maintaining my attendance.*/
 #include<stdio.h>
-#include<math.h>
 int main()
 {
-	float total_classes, absent_classes, present_classes;
-	float margin, percentage, required_ratio, total_classes_needed;
-	printf("How much attendance do you need?\nAnswer in percentage: \n");
-	scanf("%f",&percentage);
-
-	printf("Enter the number of classes conducted: \n");
-	scanf("%f",&total_classes);
+	float attended, total, required_percentage;
 	
-	printf("Enter the number of classes you were absent: \n");
-	scanf("%f",&absent_classes);
+	printf("Enter the total number of classes conducted: \n");
+	scanf("%f",&total);
+	
+	printf("Enter the number of classes attended: \n");
+	scanf("%f",&attended);
+	
+	printf("How much attendance do you need?\nAnswer in percentage: \n");
+	scanf("%f",&required_percentage);
 
-	if (percentage < 0 || percentage > 100){
-		printf("Enter the percentage between 0 to 100.");
-	return 1;
-	}
+	float current_percentage = (attended / total) * 100.0;
+    printf("Current Percentage: %.2f%%\n", current_percentage);
 
-	if (total_classes < 0){
-		printf("Number of classes cannot be less than 0.");
-	return 1;
-	}
-	if (absent_classes < 0){
-		printf("Absent classes cannot be less than 0.");
-	}
-	present_classes = total_classes - absent_classes;
-	required_ratio = percentage/100.0;
-	total_classes_needed = present_classes / required_ratio;
-	margin = total_classes_needed - total_classes;
-	printf("The total number of classes you can skip is:%.0f \n", floor(margin));
-	return 0;
+    if (current_percentage >= required_percentage) {
+        int bunked_classes = 0;
+        float temp_total = total;
+
+	while ((attended / temp_total) * 100.0 >= required_percentage) {
+            bunked_classes++;
+            temp_total++;
+        }
+	printf("You can bunk %d more classes safely.\n", bunked_classes - 1);
+    }
+		
+	else {
+        int classes_needed = 0;
+        float temp_total = total;
+        float temp_attended = attended;
+
+	while ((temp_attended / temp_total) * 100.0 < required_percentage) {
+            classes_needed++;
+            temp_attended++;
+            temp_total++;
+        }
+        printf("You need to attend %d more classes consecutively.\n", classes_needed);
+    }
+    return 0;
 }
 
