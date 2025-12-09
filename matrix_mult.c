@@ -1,3 +1,37 @@
+/*
+ * ======================================================================================
+ * PROJECT: High-Performance Parallel Matrix Multiplier
+ * AUTHOR:  Anmol Goyal
+ * GITHUB:  https://github.com/anmol-goyal7
+ * ======================================================================================
+ *
+ * DESCRIPTION:
+ * This program performs matrix multiplication optimized for multi-core processors.
+ * It utilizes the OpenMP (Open Multi-Processing) library to implement the Fork-Join
+ * parallelism model. The outer loops of the O(n^3) matrix operation are distributed
+ * across available CPU threads, significantly reducing execution time for heavy
+ * computations compared to sequential processing.
+ *
+ * TECHNICAL DETAILS:
+ * - Language: C (C99 Standard)
+ * - Concurrency: OpenMP API (#pragma omp parallel for)
+ * - Thread Safety: Loop variables (j, k) are privatized to prevent race conditions.
+ *
+ * --------------------------------------------------------------------------------------
+ * COMPILATION & EXECUTION (Linux/Arch):
+ * --------------------------------------------------------------------------------------
+ * 1. Install GCC and OpenMP:
+ * $ sudo pacman -S gcc
+ *
+ * 2. Compile with the -fopenmp flag (CRITICAL):
+ * $ gcc -fopenmp matrix_mult.c -o matrix_mult
+ *
+ * 3. Run the binary:
+ * $ ./matrix_mult
+ *
+ * ======================================================================================
+ */
+
 #include<stdio.h>
 #include<omp.h>
 
