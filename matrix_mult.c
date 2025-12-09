@@ -8,7 +8,7 @@ int main()
 
     while(1) { 
         printf("\nChoose the type of matrix you want to multiply\n");
-        printf("1. 3x3\n2. 2x2\n");
+        printf("1. 3x3\n2. 2x2\n3. Exit\n");
                 
         scanf("%d", &n);
         
@@ -82,7 +82,11 @@ int main()
             }
             break;
         }
-        else {
+        if (n==3) {
+		printf("Exiting...\n");
+		break;
+	}
+	else {
             printf("Invalid input. Choose either 1 or 2.\n");
         }
     }
