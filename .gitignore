@@ -1,0 +1,19 @@
+# Compiled binaries
+*.o
+*.out
+*.exe
+
+# Don't track binaries without extensions (compiled C output)
+# Add specific names here if needed
+/a.out
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor files
+*.swp
+*.swo
+*~
+.vscode/
+.idea/
